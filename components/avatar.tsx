@@ -1,7 +1,9 @@
-export function Avatar({ className}: { className?: string }) {
+import { cn } from "@/lib/utils";
+
+export function Avatar({ className }: { className?: string }) {
   return (
     <div
-      className={`w-11 h-11 rounded-full ${className}`}
+      className={cn("w-11 h-11 rounded-full", className)}
     >
     </div>
   );

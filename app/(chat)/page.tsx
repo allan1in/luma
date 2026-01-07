@@ -9,7 +9,11 @@ import { useState, useEffect, useRef } from "react";
 export default function Home() {
   // 发送消息
   const [messages, setMessages] = useState<
-    { role: "user" | "assistant" | "error"; content: string }[]
+    {
+      role: "user" | "assistant" | "error";
+      content: string;
+      agent?: "llm-a" | "llm-b" | "llm-c";
+    }[]
   >([]);
 
   async function handleSend(inputText: string, done: () => void) {
@@ -102,7 +106,7 @@ export default function Home() {
                   message={m.content}
                 />
               ) : (
-                <ErrorBox key={id} message={m.content} />
+                <ErrorBox className="mb-8" key={id} message={m.content} />
               )
             )}
           </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { cn } from "@/lib/utils";
 
 export function Input({
   className,
@@ -32,7 +33,7 @@ export function Input({
 
   return (
     <div
-      className={`w-full border border-neutral-700 focus-within:border-neutral-600 rounded-2xl p-4 flex flex-col justify-between gap-2 bg-neutral-950 ${className}`}
+      className={cn("w-full border border-neutral-700 focus-within:border-neutral-600 rounded-2xl p-4 flex flex-col justify-between gap-2 bg-neutral-950", className)}
     >
       <textarea
         className="border-none focus:outline-none w-full resize-none h-30 scrollbar-thin"

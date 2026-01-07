@@ -1,3 +1,5 @@
+import { cn } from "@/lib/utils";
+
 export function MessageContent({
   className,
   children,
@@ -6,7 +8,7 @@ export function MessageContent({
   children: React.ReactNode;
 }) {
   return (
-    <p className={`py-2 px-4 rounded-lg leading-7 min-h-10 max-w-full whitespace-pre-wrap break-all ${className}`}>
+    <p className={cn("py-2 px-4 rounded-lg leading-7 min-h-10 max-w-full whitespace-pre-wrap break-all", className)}>
       {children}
     </p>
   );

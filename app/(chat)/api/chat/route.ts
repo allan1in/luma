@@ -50,10 +50,10 @@ export async function POST(req: Request) {
     const err = error as { message?: string; status?: number };
     return new Response(
       JSON.stringify({ 
-        error: err.message
+        error: err.message || 'An unknown error occurred.'
       }),
       { 
-        status: err.status,
+        status: err.status || 500,
         headers: { 'Content-Type': 'application/json' }
       }
     );
