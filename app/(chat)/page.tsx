@@ -1,20 +1,20 @@
 "use client";
 
-import { ErrorBox } from "@/components/error-box";
+import { ErrorMessage } from "@/components/error-message";
 import { Input } from "@/components/input";
 import { MessageAI } from "@/components/message-ai";
 import { MessageUser } from "@/components/message-user";
+import { Navbar } from "@/components/navbar";
 import { useState, useEffect, useRef } from "react";
+
+interface Message {
+  role: "user" | "assistant" | "error";
+  content: string;
+}
 
 export default function Home() {
   // 发送消息
-  const [messages, setMessages] = useState<
-    {
-      role: "user" | "assistant" | "error";
-      content: string;
-      agent?: "llm-a" | "llm-b" | "llm-c";
-    }[]
-  >([]);
+  const [messages, setMessages] = useState<Message[]>([]);
 
   async function handleSend(inputText: string, done: () => void) {
     autoScrollRef.current = true;
@@ -93,24 +93,21 @@ export default function Home() {
 
   return (
     <div>
-      <main className="flex items-center justify-center min-h-dvh px-4">
-        <div className="py-4 max-w-3xl w-full flex flex-col min-h-dvh">
+      <Navbar />
+      <main className="flex items-center justify-center min-h-dvh px-4 pt-14">
+        <div className="py-4 max-w-3xl w-full flex flex-col min-h-[calc(100dvh-3.5rem)]">
           <div className="pt-4 pb-52">
             {messages.map((m, id) =>
               m.role === "user" ? (
                 <MessageUser key={id} className="mb-8" message={m.content} />
               ) : m.role === "assistant" ? (
-                <MessageAI
-                  key={id}
-                  className="mb-8"
-                  message={m.content}
-                />
+                <MessageAI key={id} className="mb-8" message={m.content} />
               ) : (
-                <ErrorBox className="mb-8" key={id} message={m.content} />
+                <ErrorMessage className="mb-8" key={id} message={m.content} />
               )
             )}
           </div>
-          <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] max-w-3xl pb-4 bg-neutral-950 rounded-t-2xl">
+          <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] max-w-3xl pb-4 bg-background rounded-t-2xl">
             <Input className="w-full" onSend={handleSend} />
           </div>
         </div>

@@ -33,10 +33,10 @@ export function Input({
 
   return (
     <div
-      className={cn("w-full border border-neutral-700 focus-within:border-neutral-600 rounded-2xl p-4 flex flex-col justify-between gap-2 bg-neutral-950", className)}
+      className={cn("w-full border border-border focus-within:border-ring rounded-2xl p-4 flex flex-col justify-between gap-2 bg-background", className)}
     >
       <textarea
-        className="border-none focus:outline-none w-full resize-none h-30 scrollbar-thin"
+        className="border-none focus:outline-none w-full resize-none h-30 scrollbar-thin bg-transparent text-foreground placeholder:text-muted-foreground"
         value={value}
         onChange={(e) => setValue(e.target.value)}
         placeholder={textareaPlaceholder}
@@ -45,7 +45,7 @@ export function Input({
       <div className="w-full flex flex-row-reverse">
         <button
           onClick={handleSend}
-          className={`bg-white text-neutral-950 px-4 py-2 rounded-full ${
+          className={`bg-primary text-primary-foreground px-4 py-2 rounded-full hover:bg-primary/90 transition-colors ${
             disabled ? "cursor-default opacity-50" : "cursor-pointer"
           }`}
           disabled={disabled}

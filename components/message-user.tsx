@@ -1,6 +1,5 @@
-import { Avatar } from "./avatar";
 import { MessageContent } from "./message-content";
-import { CopyButton } from "./copy-button";
+import { CopyToggle } from "./copy-toggle";
 import { cn } from "@/lib/utils";
 
 export function MessageUser({
@@ -8,22 +7,17 @@ export function MessageUser({
   message,
 }: {
   className?: string;
-  message: string;
+  message?: string;
 }) {
   return (
     <div
       className={cn("flex justify-end gap-4 animate-slide-in-right", className)}
     >
-      <div className="shrink-0 w-11">
-      </div>
       <div className="flex flex-col gap-2 items-end">
-        <MessageContent className="bg-rose-700 text-white">
+        <MessageContent className="bg-primary text-primary-foreground" isLoading={!message}>
           {message}
         </MessageContent>
-        <CopyButton text={message} align="right" />
-      </div>
-      <div className="shrink-0">
-        <Avatar className="bg-gradient-to-br from-pink-400 via-rose-600 to-rose-800" />
+        {message && <CopyToggle text={message} align="right" />}
       </div>
     </div>
   );
