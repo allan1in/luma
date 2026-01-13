@@ -98,18 +98,19 @@ export default function Home() {
             })}
             
             {showLoading && (
-              // Loading 状态应用最小高度
               <div style={{ minHeight: lastAiMinHeight ? `${lastAiMinHeight}px` : undefined }}>
                  <LoadingDots className="py-2 h-11 pb-8"/>
               </div>
             )}
             
             {error && (
-              <ErrorMessage className="pb-8" message={error.message} />
+              <div className="pb-8" style={{ minHeight: lastAiMinHeight ? `${lastAiMinHeight}px` : undefined }}>
+                <ErrorMessage message={error.message} />
+              </div> 
             )}
         </div>
           <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] max-w-3xl pb-4 bg-background rounded-t-2xl">
-            <Input className="w-full" onSend={handleSend} disabled={status !== 'ready'}/>
+            <Input className="w-full" onSend={handleSend} disabled={status !== 'error' && status !== 'ready'}/>
           </div>
       </main>
     </div>
